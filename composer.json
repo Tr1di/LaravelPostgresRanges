@@ -1,0 +1,25 @@
+{
+    "name": "tridi/laravel-postgres-ranges",
+    "description": "Postgres range types for laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tridi\\LaravelPostgresRanges\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Трапезников Дмитрий",
+            "email": "trapeznikovdn@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tridi\\LaravelPostgresRanges\\PostgresRangesServiceProvider"
+            ]
+        }
+    },
+    "require": {}
+}
