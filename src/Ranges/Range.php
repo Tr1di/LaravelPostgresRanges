@@ -43,6 +43,24 @@ abstract class Range implements JsonSerializable, Wireable, Castable, Expression
         }
     }
 
+    public static function inclusive($from, $to): static {
+        return new static(
+            $from,
+            $to,
+            LowerBound::Inclusive,
+            UpperBound::Inclusive
+        );
+    }
+
+    public static function exclusive($from, $to): static {
+        return new static(
+            $from,
+            $to,
+            LowerBound::Exclusive,
+            UpperBound::Exclusive
+        );
+    }
+
     /**
      * @return TData|null
      */

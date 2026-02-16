@@ -10,7 +10,7 @@ use Tridi\LaravelPostgresRanges\Bounds\UpperBound;
  */
 abstract class CanonicalRange extends Range
 {
-    public function toInclusive(): self {
+    public function toInclusive(): static {
         if ($this->lowerBound()->isExclusive()) {
             $from = $this->increment($this->from());
             $lowerBound = LowerBound::Inclusive;
@@ -29,7 +29,7 @@ abstract class CanonicalRange extends Range
         );
     }
 
-    public function toExclusive(): self {
+    public function toExclusive(): static {
         if ($this->lowerBound()->isInclusive()) {
             $from = $this->decrement($this->from());
             $lowerBound = LowerBound::Exclusive;
@@ -48,7 +48,7 @@ abstract class CanonicalRange extends Range
         );
     }
 
-    public function toCanonical(): self {
+    public function toCanonical(): static {
         if ($this->lowerBound()->isExclusive()) {
             $from = $this->increment($this->from());
             $lowerBound = LowerBound::Inclusive;

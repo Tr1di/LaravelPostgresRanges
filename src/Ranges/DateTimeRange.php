@@ -22,7 +22,7 @@ class DateTimeRange extends Range
         return DateTimeRangeCast::class;
     }
 
-    protected function transform(string $value): CarbonImmutable|null {
+    protected function transform($value): CarbonImmutable|null {
         return CarbonImmutable::parse($value);
     }
 
