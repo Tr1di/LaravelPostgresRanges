@@ -2,6 +2,8 @@
 
 namespace Tridi\LaravelPostgresRanges\Ranges;
 
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
 use Illuminate\Support\Optional;
 use Tridi\LaravelPostgresRanges\Casts\RangeCast;
 
@@ -10,7 +12,7 @@ class IntRange extends CanonicalRange
     /**
      * @inheritDoc
      */
-    public static function castUsing(array $arguments) {
+    public static function castUsing(array $arguments): RangeCast|CastsAttributes|string|CastsInboundAttributes {
         return new class extends RangeCast {
             protected function getRangeClass(): string {
                 return IntRange::class;
