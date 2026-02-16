@@ -2,7 +2,8 @@
 
 namespace Tridi\LaravelPostgresRanges\Ranges;
 
-use Tridi\LaravelPostgresRanges\Ranges\Range;
+use Illuminate\Support\Optional;
+use Tridi\LaravelPostgresRanges\Casts\RangeCast;
 
 class IntRange extends CanonicalRange
 {
@@ -10,32 +11,32 @@ class IntRange extends CanonicalRange
      * @inheritDoc
      */
     public static function castUsing(array $arguments) {
-        // TODO: Implement castUsing() method.
+        return new class extends RangeCast {
+            protected function getRangeClass(): string {
+                return IntRange::class;
+            }
+        };
     }
 
-    public function toCanonical(): IntRange {
-        // TODO: Implement toCanonical() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function increment($value): mixed {
-        // TODO: Implement increment() method.
+    protected function transform($value): int {
+        return (int)$value;
     }
 
     /**
      * @inheritDoc
      */
-    protected function decrement($value): mixed {
-        // TODO: Implement decrement() method.
+    protected function increment($value): int|Optional {
+        return optional($value, static fn($value): int => $value + 1);
     }
 
-    protected function transform(string $value): mixed {
-        // TODO: Implement transform() method.
+    /**
+     * @inheritDoc
+     */
+    protected function decrement($value): int|Optional {
+        return optional($value, static fn($value): int => $value - 1);
     }
 
     protected function sqlTypeCast(): string {
-        // TODO: Implement sqlTypeCast() method.
+        return "int4range";
     }
 }
