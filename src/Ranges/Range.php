@@ -127,14 +127,14 @@ abstract class Range implements JsonSerializable, Wireable, Castable, Expression
 
     public function toLivewire(): array {
         return [
-            'from' => $this->from,
-            'to' => $this->to
+            'start' => $this->from,
+            'end' => $this->to
         ];
     }
 
     public static function fromLivewire($value): static {
-        $from = $value['from'];
-        $to = $value['to'];
+        $from = $value['start'];
+        $to = $value['end'];
 
         return new static($from, $to, LowerBound::Inclusive, UpperBound::Inclusive);
     }
